@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+
+dependencies {
+    deps.each { entry ->
+        if (entry.value instanceof String) {
+            implementation entry.value
+        } else if (entry.value instanceof Map) {
+            entry.value.each { lib ->
+                implementation lib.value
+            }
+        } else if (entry.value != null) {
+            implementation entry.value
+        }
+    }
+}
