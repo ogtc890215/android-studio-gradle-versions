@@ -1,15 +1,50 @@
+apply plugin: plugIns.dependency_update
 apply plugin: 'java-library'
 
-dependencies {
-    deps.each { entry ->
-        if (entry.value instanceof String) {
-            implementation entry.value
-        } else if (entry.value instanceof Map) {
-            entry.value.each { lib ->
-                implementation lib.value
+
+dependencyUpdates {
+    doFirst {
+        if (project.hasProperty("spec")) {
+            spec.split(',').each { entry ->
+                println entry
+                project.dependencies {
+                    def library = deps[entry]
+                    if (library instanceof String) {
+                        implementation library
+                    } else if (library instanceof Map) {
+                        library.each { lib ->
+                            implementation lib.value
+                        }
+                    }
+                }
             }
-        } else if (entry.value != null) {
-            implementation entry.value
+        } else {
+            project.dependencies {
+                deps.each { entry ->
+                    if (entry.value instanceof String) {
+                        implementation entry.value
+                    } else if (entry.value instanceof Map) {
+                        entry.value.each { lib ->
+                            implementation lib.value
+                        }
+                    } else if (entry.value != null) {
+                        implementation entry.value
+                    }
+                }
+            }
+        }
+    }
+}
+
+dependencyUpdates.resolutionStrategy {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+                selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+            }
+            if (rejected) {
+                selection.reject('Release candidate')
+            }
         }
     }
 }
