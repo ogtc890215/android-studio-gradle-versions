@@ -47,6 +47,24 @@ deps.multidex = "com.android.support:multidex:$versions.multidex"
 versions.constraint_layout = '1.1.2'
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 
+def ktx = [:]
+versions.ktx = '1.0.0-alpha1'
+ktx.core = "androidx.core:core-ktx:$versions.ktx"
+ktx.fragment = "androidx.fragment:fragment-ktx:$versions.ktx"
+ktx.palette = "androidx.palette:palette-ktx:$versions.ktx"
+ktx.sqlite = "androidx.sqlite:sqlite-ktx:$versions.ktx"
+ktx.collection = "androidx.collection:collection-ktx:$versions.ktx"
+ktx.navigation_common = "android.arch.navigation:navigation-common-ktx:$versions.ktx"
+ktx.navigation_fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.ktx"
+ktx.navigation_runtime = "android.arch.navigation:navigation-runtime-ktx:$versions.ktx"
+ktx.navigation_testing = "android.arch.navigation:navigation-testing-ktx:$versions.ktx"
+ktx.navigation_ui = "android.arch.navigation:navigation-ui-ktx:$versions.ktx"
+ktx.work = "android.arch.work:work-runtime-ktx:$versions.ktx"
+versions.ktx_lifecycle = '2.0.0-alpha1'
+ktx.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.ktx_lifecycle"
+ktx.lifecycle_reactivestreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.ktx_lifecycle"
+deps.ktx = ktx
+
 def gms = [:]
 versions.gms_play_services = '15.0.1'
 gms.cast_framework = "com.google.android.gms:play-services-cast-framework:$versions.gms_play_services"
