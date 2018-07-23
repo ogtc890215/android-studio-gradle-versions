@@ -1,37 +1,27 @@
 apply plugin: plugIns.dependency_update
 apply plugin: 'java-library'
 
+def insertDependencies(entry) {
+    if (entry instanceof Map) {
+        entry.each { child ->
+            insertDependencies(child.value)
+        }
+    } else {
+        project.dependencies {
+            implementation entry
+        }
+    }
+}
 
 dependencyUpdates {
     doFirst {
         if (project.hasProperty("spec")) {
             spec.split(',').each { entry ->
                 println entry
-                project.dependencies {
-                    def library = deps[entry]
-                    if (library instanceof String) {
-                        implementation library
-                    } else if (library instanceof Map) {
-                        library.each { lib ->
-                            implementation lib.value
-                        }
-                    }
-                }
+                insertDependencies(deps[entry])
             }
         } else {
-            project.dependencies {
-                deps.each { entry ->
-                    if (entry.value instanceof String) {
-                        implementation entry.value
-                    } else if (entry.value instanceof Map) {
-                        entry.value.each { lib ->
-                            implementation lib.value
-                        }
-                    } else if (entry.value != null) {
-                        implementation entry.value
-                    }
-                }
-            }
+            insertDependencies(deps)
         }
     }
 }
