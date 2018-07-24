@@ -174,16 +174,15 @@ deps.dagger = dagger
 
 def espresso = [:]
 versions.espresso = '3.0.2'
-espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso" // androidTest
 espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
 espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso"
 deps.espresso = espresso
 
 def atsl = [:]
-versions.atsl_runner = '1.0.2'
-atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
-versions.atsl_rules = '1.0.2'
-atsl.rules = "com.android.support.test:rules:$versions.atsl_runner"
+versions.atsl = '1.0.2'
+atsl.runner = "com.android.support.test:runner:$versions.atsl" // androidTest
+atsl.rules = "com.android.support.test:rules:$versions.atsl" // androidTest
 deps.atsl = atsl
 
 def mockito = [:]
@@ -234,7 +233,7 @@ deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
 versions.timber = '4.7.1'
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 versions.junit = '4.12'
-deps.junit = "junit:junit:$versions.junit"
+deps.junit = "junit:junit:$versions.junit" // test
 versions.rxjava2 = '2.1.16'
 deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 versions.rx_android = '2.0.2'
