@@ -25,6 +25,8 @@ versions.apache_commons = '2.5'
 def deps = [:]
 def androidx = [:]
 versions.androidx = '2.0.0-beta01'
+versions.android_gradle_plugin = '3.1.3'
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin" // buildscript
 
 def support = [:]
 versions.support = '27.1.1'
@@ -139,6 +141,10 @@ work.firebase = "android.arch.work:work-firebase:$versions.work"
 work.testing = "android.arch.work:work-testing:$versions.work" // androidTest
 deps.work = work
 
+def databinding = [:]
+databinding.compiler = "com.android.databinding:compiler:$versions.android_gradle_plugin" // annotation
+deps.databinding = databinding
+
 deps.androidx = androidx
 
 def retrofit2 = [:]
@@ -240,8 +246,6 @@ versions.rx_android = '2.0.2'
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 versions.hamcrest = '1.3'
 deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
-versions.android_gradle_plugin = '3.1.3'
-deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin" // buildscript
 versions.dependency_update = '0.20.0'
 deps.dependency_update = "com.github.ben-manes:gradle-versions-plugin:$versions.dependency_update" // buildscript
 ext.deps = deps
