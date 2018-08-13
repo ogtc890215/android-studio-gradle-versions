@@ -10,6 +10,7 @@ then
         SUBMIT=0
     else
         echo "versions.gradle has new updates, please sync with the latest before commit"
+        echo "cp \$ANDROID_PROJECT_VERSION_FILE versions.gradle"
         SUBMIT=1
     fi
 fi
