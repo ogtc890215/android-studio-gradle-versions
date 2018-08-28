@@ -2,6 +2,7 @@
 
 SUBMIT=1
 # Check versions.gradle updated before submitting a new commit
+# $ANDROID_PROJECT_VERSION_FILE = /path/to/android-studio-gradle-versions/versions.gradle
 if [ -f $ANDROID_PROJECT_VERSION_FILE ]
 then
     GIT_ROOT=`git rev-parse --show-toplevel`
