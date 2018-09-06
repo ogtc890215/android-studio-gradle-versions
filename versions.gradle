@@ -198,8 +198,12 @@ deps.dagger = dagger
 def espresso = [:]
 versions.espresso = '3.0.2'
 espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso" // androidTest
-espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
-espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso" // androidTest
+espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso" // androidTest
+espresso.accessibility = "com.android.support.test.espresso:espresso-accessibility:$versions.espresso" // androidTest
+espresso.web = "com.android.support.test.espresso:espresso-web:$versions.espresso" // androidTest
+espresso.idling = "com.android.support.test.espresso.idling:idling-concurrent:$versions.espresso" // androidTest
+espresso.resource = "com.android.support.test.espresso:espresso-idling-resource:$version.espresso" // androidTest or normal
 deps.espresso = espresso
 
 def atsl = [:]
@@ -266,6 +270,7 @@ versions.hamcrest = '1.3'
 deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest" // test
 versions.dependency_update = '0.20.0'
 deps.dependency_update = "com.github.ben-manes:gradle-versions-plugin:$versions.dependency_update" // buildscript
+deps.robolectric = "org.robolectric:robolectric:3.8" // test
 ext.deps = deps
 
 def build_versions = [:]
