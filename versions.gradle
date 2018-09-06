@@ -203,7 +203,7 @@ espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions
 espresso.accessibility = "com.android.support.test.espresso:espresso-accessibility:$versions.espresso" // androidTest
 espresso.web = "com.android.support.test.espresso:espresso-web:$versions.espresso" // androidTest
 espresso.idling = "com.android.support.test.espresso.idling:idling-concurrent:$versions.espresso" // androidTest
-espresso.resource = "com.android.support.test.espresso:espresso-idling-resource:$version.espresso" // androidTest or normal
+espresso.resource = "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso" // androidTest or normal
 deps.espresso = espresso
 
 def atsl = [:]
