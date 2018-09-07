@@ -14,13 +14,6 @@ dependencies {
     runtime deps.gson
 }
 
-task listJavadocs {
-    configurations.runtime.incoming.resolutionResult.allDependencies {
-        println it.selected.id
-        println it.from.id.displayName
-    }
-}
-
 task downloadJavadocs {
     inputs.files configurations.runtime
     outputs.dir "${buildDir}/download"
