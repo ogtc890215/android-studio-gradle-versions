@@ -1,0 +1,51 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+idea {
+    module {
+        downloadJavadoc true
+    }
+}
+
+dependencies {
+    runtime deps.mockito.core
+    runtime deps.gson
+}
+
+task listJavadocs {
+    configurations.runtime.incoming.resolutionResult.allDependencies {
+        println it.selected.id
+        println it.from.id.displayName
+    }
+}
+
+task downloadJavadocs {
+    inputs.files configurations.runtime
+    outputs.dir "${buildDir}/download"
+    doLast {
+        def componentIds = configurations.runtime.incoming.resolutionResult.allDependencies
+                .findAll { it.from.id.displayName.startsWith('project :') }
+                .collect { it.selected.id }
+        ArtifactResolutionResult result = dependencies.createArtifactResolutionQuery()
+                .forComponents(componentIds)
+                .withArtifacts(JvmLibrary, JavadocArtifact)
+                .execute()
+        def javadocArtifacts = []
+        result.resolvedComponents.each { ComponentArtifactsResult component ->
+            Set<ArtifactResult> sources = component.getArtifacts(JavadocArtifact)
+            println "Found ${sources.size()} sources for ${component.id}"
+            sources.each { ArtifactResult ar ->
+                if (ar instanceof ResolvedArtifactResult) {
+                    javadocArtifacts << ar.file
+                }
+            }
+        }
+
+        copy {
+            from javadocArtifacts
+            into "${buildDir}/download"
+        }
+    }
+}

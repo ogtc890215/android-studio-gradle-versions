@@ -1,1 +1,2 @@
 include ':checkDeps'
+include ':javadoc4dash'
